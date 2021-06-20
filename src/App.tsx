@@ -1,5 +1,11 @@
-import { TasksList } from './features/tasks/TasksList';
+import { TasksList } from './features/tasks/components/TasksList';
+import { GlobalStyle } from './styles';
 
 export const App = () => {
-  return <TasksList />;
+  return (
+    <>
+      <GlobalStyle />
+      <TasksList />
+    </>
+  );
 };

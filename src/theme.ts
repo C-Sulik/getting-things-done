@@ -1,9 +1,18 @@
-import { DefaultTheme } from 'styled-components';
-
-export const theme: DefaultTheme = {
+export const theme = {
   radius: { default: '0.8rem' },
   colors: {
-    background: { hard: '#FF467D', normal: '#FF5F5F', easy: '#FE8368', easiest: '#FFB966' },
+    white: '#FFFFFF',
+    black: '#000000',
+    accent: '#FF8933',
+    inactive: '#CACACA',
+    danger: '#696969',
+    secondary: '#F95D66',
+    faintOrange: '#FFE8DB',
+    blackStroke: '#555555',
+    hard: '#FF467D',
+    normal: '#FF5F5F',
+    easy: '#FE8368',
+    easiest: '#FFB966',
   },
   fontSize: {
     extraSmall: '1rem',

@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export type TaskI = {
   id: number;
   title: string;
-  reward: 300 | 125 | 100 | 75 | 50;
+  reward: number /* 300 | 125 | 100 | 75 | 50 */;
+  completed: boolean;
 };
 
 export type TasksStateI = {
@@ -12,11 +13,16 @@ export type TasksStateI = {
 
 const initialState: TasksStateI = {
   items: [
-    { id: 1, title: 'СПЭМ ЗА ТРИСТА', reward: 300 },
-    { id: 2, title: 'СПЭМ ЗА СТО ДВАДЦАТь ПЯТЬ', reward: 125 },
-    { id: 3, title: 'СПЭМ ЗА СТО', reward: 100 },
-    { id: 4, title: 'СПЭМ ЗА СЕМЬДЕСЯТ ПЯТЬ', reward: 75 },
-    { id: 5, title: 'СПЭМ ЗА ПЯТЬДЕСЯТ', reward: 50 },
+    { id: 1, title: 'Find dad’s wallet', reward: 300, completed: false },
+    {
+      id: 2,
+      title: 'Put away old toys to white boxes on the balcony',
+      reward: 125,
+      completed: false,
+    },
+    { id: 3, title: 'Wash the dishes', reward: 100, completed: false },
+    { id: 4, title: 'Make your bed in the morning', reward: 75, completed: false },
+    { id: 5, title: 'Fix the pillowcase', reward: 50, completed: false },
   ],
 };
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ConfirmIcon } from '../../../icons';
+import { TaskI } from '../tasks-slice';
 
 const TaskSide = styled.div`
   display: flex;
@@ -43,12 +44,14 @@ const IconWrapper = styled.div`
   border-radius: 50%;
 `;
 
-export const CompletedTask = () => {
+export const CompletedTask = ({ reward }: Partial<TaskI>) => {
   return (
     <TaskSide>
-      <IconWrapper>{ConfirmIcon('big')}</IconWrapper>
+      <IconWrapper>
+        <ConfirmIcon size="big" />
+      </IconWrapper>
       <Text>Well done!</Text>
-      <Reward>You earned 50 Help Coins!</Reward>
+      <Reward>You earned {reward} Help Coins!</Reward>
     </TaskSide>
   );
 };

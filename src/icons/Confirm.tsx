@@ -1,4 +1,6 @@
-export const ConfirmIcon = (size = 'standard') => {
+import { IconPropsI } from './types';
+
+export const ConfirmIcon: React.FC<IconPropsI> = ({ size = 'standard' }) => {
   if (size === 'big') {
     return (
       <svg

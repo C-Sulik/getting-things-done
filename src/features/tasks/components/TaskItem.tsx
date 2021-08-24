@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
+import { useAppDispatch } from '../../../app/hooks';
 import { Button } from '../../../components/Button';
-import { TaskI } from '../tasks-slice';
+import { TaskI, completeTask } from '../tasks-slice';
 
 const TaskWrapper = styled.li<{ isFlipped: boolean }>`
   position: relative;
   display: flex;
   list-style: none;
-  cursor: pointer;
   width: 240px;
   height: 240px;
   transition: transform 500ms;
@@ -34,6 +34,7 @@ const TaskFront = styled.div`
   position: absolute;
   flex-direction: column;
   color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
 `;
 
 const TaskBack = styled.div`
@@ -89,23 +90,24 @@ const getDifficulty = (reward: number): Difficulty => {
   return 'easiest';
 };
 
-export const TasksItem = ({ title, reward }: TaskI) => {
+export const TasksItem = ({ title, reward, id }: TaskI) => {
   const [isFlipped, setFlipped] = useState(false);
+  const dispatch = useAppDispatch();
+  const HandleCompleteTask = () => dispatch(completeTask(id));
   const taskDifficulty = getDifficulty(reward);
-
   const flipCard = () => setFlipped((flipped) => !flipped);
 
   return (
     <>
-      <TaskWrapper onClick={flipCard} isFlipped={isFlipped}>
-        <TaskFront difficulty={taskDifficulty}>
+      <TaskWrapper isFlipped={isFlipped}>
+        <TaskFront onClick={flipCard} difficulty={taskDifficulty}>
           <Reward>{reward}</Reward>
           <TaskTitle>{title}</TaskTitle>
         </TaskFront>
         <TaskBack>
           <ConfirmQuestion>Did you {title} </ConfirmQuestion>
-          <Button icon="cancel"></Button>
-          <Button icon="confirm"></Button>
+          <Button onClick={flipCard} icon="cancel"></Button>
+          <Button onClick={HandleCompleteTask} icon="confirm"></Button>
           <Note color="blackStroke">No, maybe later</Note>
           <Note color="accent">Yes, I did!</Note>
         </TaskBack>

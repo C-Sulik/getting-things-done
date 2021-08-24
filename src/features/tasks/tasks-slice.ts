@@ -5,6 +5,8 @@ export type TaskI = {
   title: string;
   reward: number /* 300 | 125 | 100 | 75 | 50 */;
   completed: boolean;
+  // createdAt: Date;
+  // userId: number;
 };
 
 export type TasksStateI = {
@@ -29,5 +31,12 @@ const initialState: TasksStateI = {
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {},
+  reducers: {
+    completeTask: (tasks, action) => {
+      const task = tasks.items.find(({ id }) => action.payload === id);
+      if (task) task.completed = true;
+    },
+  },
 });
+
+export const { completeTask } = tasksSlice.actions;

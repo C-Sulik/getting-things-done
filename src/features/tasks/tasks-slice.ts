@@ -5,7 +5,7 @@ export type TaskI = {
   title: string;
   reward: number /* 300 | 125 | 100 | 75 | 50 */;
   completed: boolean;
-  // createdAt: Date;
+  createdAt: Date;
   // userId: number;
 };
 
@@ -15,16 +15,69 @@ export type TasksStateI = {
 
 const initialState: TasksStateI = {
   items: [
-    { id: 1, title: 'Find dad’s wallet', reward: 300, completed: false },
+    {
+      id: 1,
+      title: 'Find dad’s wallet',
+      reward: 300,
+      completed: false,
+      createdAt: new Date(2021, 8, 24),
+    },
     {
       id: 2,
       title: 'Put away old toys to white boxes on the balcony',
       reward: 125,
       completed: false,
+      createdAt: new Date(2021, 8, 24),
     },
-    { id: 3, title: 'Wash the dishes', reward: 100, completed: false },
-    { id: 4, title: 'Make your bed in the morning', reward: 75, completed: false },
-    { id: 5, title: 'Fix the pillowcase', reward: 50, completed: false },
+    {
+      id: 3,
+      title: 'Wash the dishes',
+      reward: 100,
+      completed: false,
+      createdAt: new Date(2021, 8, 23),
+    },
+    {
+      id: 4,
+      title: 'Make your bed in the morning',
+      reward: 75,
+      completed: false,
+      createdAt: new Date(2021, 8, 23),
+    },
+    {
+      id: 5,
+      title: 'Fix the pillowcase',
+      reward: 50,
+      completed: false,
+      createdAt: new Date(2021, 8, 22),
+    },
+    {
+      id: 6,
+      title: 'Find dad’s wallet',
+      reward: 300,
+      completed: false,
+      createdAt: new Date(2021, 8, 24),
+    },
+    {
+      id: 7,
+      title: 'Put away old toys to white boxes on the balcony',
+      reward: 125,
+      completed: false,
+      createdAt: new Date(2021, 8, 24),
+    },
+    {
+      id: 8,
+      title: 'Find dad’s wallet',
+      reward: 300,
+      completed: false,
+      createdAt: new Date(2021, 8, 24),
+    },
+    {
+      id: 9,
+      title: 'Put away old toys to white boxes on the balcony',
+      reward: 125,
+      completed: false,
+      createdAt: new Date(2021, 8, 24),
+    },
   ],
 };
 

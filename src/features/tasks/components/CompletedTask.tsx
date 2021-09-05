@@ -16,7 +16,7 @@ const TaskSide = styled.div`
   }
 `;
 
-const Reward = styled.p`
+export const Reward = styled.p`
   margin: 0.5rem 2rem 2rem 2.4rem;
   line-height: 1.7rem;
   font-size: ${({ theme }) => theme.fontSize.regular};

@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../../app/hooks';
 import { Button } from '../../../components/Button';
 import { TaskI, completeTask } from '../tasks-slice';
 
-const TaskWrapper = styled.li<{ isFlipped: boolean }>`
+export const TaskWrapper = styled.li<{ isFlipped: boolean }>`
   position: relative;
   display: flex;
   list-style: none;
@@ -15,7 +15,7 @@ const TaskWrapper = styled.li<{ isFlipped: boolean }>`
   transform: ${({ isFlipped }) => (isFlipped ? 'rotateY(180deg)' : 'rotateY(0)')};
 `;
 
-const TaskSide = css<{ difficulty?: Difficulty }>`
+export const TaskSide = css<{ difficulty?: Difficulty }>`
   width: 240px;
   height: 240px;
   background-color: ${({ theme, difficulty }) =>
@@ -27,7 +27,7 @@ const TaskSide = css<{ difficulty?: Difficulty }>`
   }
 `;
 
-const TaskFront = styled.div`
+export const TaskFront = styled.div`
   ${TaskSide}
   backface-visibility: hidden;
   display: flex;
@@ -37,7 +37,7 @@ const TaskFront = styled.div`
   cursor: pointer;
 `;
 
-const TaskBack = styled.div`
+export const TaskBack = styled.div`
   ${TaskSide}
   backface-visibility: hidden;
   display: grid;
@@ -48,7 +48,7 @@ const TaskBack = styled.div`
   transform: rotateY(-180deg);
 `;
 
-const Reward = styled.span`
+export const Reward = styled.span`
   margin-left: auto;
   padding: 0.8rem;
   border-radius: ${({ theme }) => `0 ${theme.radius.default}`};
@@ -57,13 +57,13 @@ const Reward = styled.span`
   font-size: ${({ theme }) => theme.fontSize.medium};
 `;
 
-const TaskTitle = styled.p`
+export const TaskTitle = styled.p`
   margin: auto 2rem 2.4rem 2rem;
   line-height: 2.2rem;
   font-size: ${({ theme }) => theme.fontSize.medium};
 `;
 
-const ConfirmQuestion = styled.p`
+export const ConfirmQuestion = styled.p`
   justify-self: center;
   grid-column-start: 1;
   grid-column-end: 3;
@@ -73,7 +73,7 @@ const ConfirmQuestion = styled.p`
   font-size: ${({ theme }) => theme.fontSize.medium};
 `;
 
-const Note = styled.span<{ color: keyof DefaultTheme['colors'] }>`
+export const Note = styled.span<{ color: keyof DefaultTheme['colors'] }>`
   justify-self: center;
   font-size: ${({ theme }) => theme.fontSize.small};
   line-height: 12px;
@@ -83,7 +83,7 @@ const Note = styled.span<{ color: keyof DefaultTheme['colors'] }>`
 
 export type Difficulty = 'easiest' | 'easy' | 'normal' | 'hard';
 
-const getDifficulty = (reward: number): Difficulty => {
+export const getDifficulty = (reward: number): Difficulty => {
   if (reward >= 125) return 'hard';
   if (reward >= 100) return 'normal';
   if (reward >= 75) return 'easy';
@@ -91,9 +91,10 @@ const getDifficulty = (reward: number): Difficulty => {
 };
 
 export const TasksItem = ({ title, reward, id }: TaskI) => {
-  const [isFlipped, setFlipped] = useState(false);
   const dispatch = useAppDispatch();
-  const HandleCompleteTask = () => dispatch(completeTask(id));
+  const [isFlipped, setFlipped] = useState(false);
+
+  const handleCompleteTask = () => dispatch(completeTask(id));
   const taskDifficulty = getDifficulty(reward);
   const flipCard = () => setFlipped((flipped) => !flipped);
 
@@ -107,7 +108,7 @@ export const TasksItem = ({ title, reward, id }: TaskI) => {
         <TaskBack>
           <ConfirmQuestion>Did you {title} </ConfirmQuestion>
           <Button onClick={flipCard} icon="cancel"></Button>
-          <Button onClick={HandleCompleteTask} icon="confirm"></Button>
+          <Button onClick={handleCompleteTask} icon="confirm"></Button>
           <Note color="blackStroke">No, maybe later</Note>
           <Note color="accent">Yes, I did!</Note>
         </TaskBack>

@@ -16,6 +16,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
+      margin: 0 30px;
+      padding: 0;
       font-family: 'Roboto';
       min-height: 100%;
       font-size: 1.6rem;

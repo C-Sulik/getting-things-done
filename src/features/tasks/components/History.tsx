@@ -53,6 +53,7 @@ export const History = () => {
 
   const history: { [date: string]: TaskI[] } = {};
   tasks.forEach((task) => {
+    // 'Fri Sep 24 2021 00:00:00 GMT+0300 (Москва, стандартное время)'
     const date = format(task.createdAt, 'EEEE, MMMM dd').toString();
     if (!history[date]) history[date] = [];
     history[date].push(task);

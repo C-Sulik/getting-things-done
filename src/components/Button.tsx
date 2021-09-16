@@ -1,40 +1,37 @@
-import styled from 'styled-components';
-import { CancelIcon, ConfirmIcon } from '../icons';
-import { IconPropsI } from '../icons/types';
+import styled, { css } from 'styled-components';
 
-const StyletButton = styled.button<{ icon?: IconNames }>`
+const StyletButton = styled.button<{ variation: string; color: string; width: string }>`
   display: flex;
   justify-content: center;
-  justify-self: center;
-  align-items: center;
-  width: 70px;
-  height: 70px;
-  border: ${({ icon, theme }) =>
-    icon !== 'confirm' ? 'none' : `1px dashed ${theme.colors.accent}`};
-  border-radius: 50%;
-  background-color: transparent;
+  width: ${({ width }) => width};
+  height: 40px;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  padding: 1rem;
+  border: ${({ variation }) => (variation === 'bordered' ? '1px solid #f95d66;' : 'none')};
+  background-color: ${({ variation, color }) => (variation === 'blocky' ? color : 'transparent')};
+  color: ${({ variation, color }) => (variation === 'blocky' ? '#ffffff' : color)};
   cursor: pointer;
 `;
 
-type IconNames = 'confirm' | 'cancel';
-
-const iconsMap: { [iconName in IconNames]?: React.FC<IconPropsI> } = {
-  confirm: ConfirmIcon,
-  cancel: CancelIcon,
-};
-
 interface ButtonI {
+  variation: 'bordered' | 'blocky';
+  width: string;
+  color: string;
   type?: 'submit' | 'reset' | 'button';
-  icon?: IconNames;
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export const Button: React.FC<ButtonI> = ({ type = 'button', icon, onClick, children }) => {
-  const IconComponent = icon && iconsMap[icon];
-
+export const Button: React.FC<ButtonI> = ({
+  type = 'button',
+  onClick,
+  variation,
+  color,
+  width,
+  children,
+}) => {
   return (
-    <StyletButton onClick={onClick} type={type} icon={icon}>
-      {IconComponent && <IconComponent />}
+    <StyletButton onClick={onClick} type={type} variation={variation} color={color} width={width}>
       {children}
     </StyletButton>
   );

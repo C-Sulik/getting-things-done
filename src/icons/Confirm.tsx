@@ -19,11 +19,9 @@ export const ConfirmIcon: React.FC<IconPropsI> = ({ size = 'standard' }) => {
   }
 
   return (
-    <svg width="35" height="27" viewBox="0 0 36 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M12 21.4L3.59999 13L0.799988 15.8L12 27L36 3.00001L33.2 0.200012L12 21.4Z"
-        fill="#FF8933"
-      />
+    <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="33" cy="33" r="32" stroke="#FF8933" stroke-dasharray="5 5" />
+      <path d="M27 44.4L18.6 36L15.8 38.8L27 50L51 26L48.2 23.2L27 44.4Z" fill="#FF8933" />
     </svg>
   );
 };

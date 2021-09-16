@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 import { useAppDispatch } from '../../../app/hooks';
-import { Button } from '../../../components/Button';
+import { IconButton } from './TaskButton';
 import { TaskI, completeTask } from '../tasks-slice';
 
 export const TaskWrapper = styled.li<{ isFlipped: boolean }>`
@@ -107,8 +107,8 @@ export const TasksItem = ({ title, reward, id }: TaskI) => {
         </TaskFront>
         <TaskBack>
           <ConfirmQuestion>Did you {title} </ConfirmQuestion>
-          <Button onClick={flipCard} icon="cancel"></Button>
-          <Button onClick={handleCompleteTask} icon="confirm"></Button>
+          <IconButton onClick={flipCard} icon="cancel"></IconButton>
+          <IconButton onClick={handleCompleteTask} icon="confirm"></IconButton>
           <Note color="blackStroke">No, maybe later</Note>
           <Note color="accent">Yes, I did!</Note>
         </TaskBack>
